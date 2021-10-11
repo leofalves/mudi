@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mudi - Home</title>
+</head>
+<body>
+	<div th:each="pedido : ${pedidos}">
+		<div th:text="${pedido.productName}">Nome do Produto</div>
+		<div>Valor: <span th:text="${pedido.productPriceDeal}">200,95</span></div>
+		<div>Data da entrega: <span th:text="${pedido.deliveryDate}">10/11/2021</span></div>
+		
+		<div>Produto</div>
+		<div><input th:value="${pedido.productUrl}" value="url do produto"/></div>
+		
+		<div>Descrição</div>
+		<div>
+			<textarea th:text="${pedido.description}" rows="5" cols="40">Lorem ipsum dolor sit amet. </textarea>
+		</div>
+		
+		<div>
+			<img th:src="${pedido.imageUrl}" alt="Produto" src="/">
+		</div>
+		
+	</div>
+
+</body>
+</html>
