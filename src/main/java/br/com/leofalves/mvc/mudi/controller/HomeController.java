@@ -1,23 +1,27 @@
 package br.com.leofalves.mvc.mudi.controller;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import br.com.leofalves.mvc.mudi.model.Pedido;
+import br.com.leofalves.mvc.mudi.repository.PedidoRepository;
 
 @Controller
 public class HomeController {
 	
+	@Autowired
+	private PedidoRepository repository;
+	
 	@GetMapping("/home")
 	public String home(Model model) {
 		
-		Pedido pedido1 = new Pedido();
+		List<Pedido> pedidos = repository.recuperaTodosPedidos();
+		
+		/*Pedido pedido1 = new Pedido();
 		pedido1.setProductName("Echo Dot (4ª geração): Smart Speaker com Relógio e Alexa - Cor Branca");
 		pedido1.setProductPriceDeal(BigDecimal.valueOf(474,05));
 		pedido1.setDeliveryDate(LocalDate.now());
@@ -30,11 +34,11 @@ public class HomeController {
 		pedido2.setDeliveryDate(LocalDate.now());
 		pedido2.setImageUrl("https://m.media-amazon.com/images/I/51uUR1j-kfL._AC_SL1000_.jpg");
 		pedido2.setProductUrl("https://www.amazon.com.br/Echo-Show-8-Smart-Speaker-Alexa/dp/B07SG8F1QF/ref=p13n_ds_purchase_sim_1p_dp_desktop_2/140-4584040-2716217?pd_rd_w=6sGiy&pf_rd_p=bcb2ee29-2818-4fa9-a787-3b071b070ab8&pf_rd_r=EPW9JX9Q4X4NCX99XF1Q&pd_rd_r=05a778f5-91de-4ed9-9e01-44da0aea6fec&pd_rd_wg=9HiJS&pd_rd_i=B07SG8F1QF&psc=1");
-
+		*/
 		
-		List<Pedido> pedidos = new ArrayList<Pedido>();
-		pedidos.add(pedido1);		
-		pedidos.add(pedido2);
+		//List<Pedido> pedidos = new ArrayList<Pedido>();
+		//pedidos.add(pedido1);		
+		//pedidos.add(pedido2);
 		
 		// Envia a informação para a View
 		model.addAttribute("pedidos", pedidos);
